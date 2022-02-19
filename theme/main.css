@@ -1,0 +1,158 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300&family=Poppins:wght@100;200;300;400&display=swap');
+
+*{
+    width: 100%;
+    height: auto;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+body{
+    box-sizing: border-box;
+}
+.f-center{
+    display: flex;
+    justify-content: center;
+}
+a{
+    text-decoration: none;
+}
+
+.back-button{
+    width: 150px;
+    padding: 15px 18px;
+}
+
+#brand{
+    width: 95%;
+    display: flex;
+    margin: 0 auto;
+    height: auto;
+    overflow: hidden;
+    padding: 10px 0;
+}
+
+.icon-container{
+    width: 80px;
+}
+.company-name{
+    width: fit-content;
+    height: auto;
+    overflow: hidden;
+    border-bottom: 2px solid rgb(0, 116, 161);
+    border-radius: 15px;
+}
+
+.company-name h2{
+    padding: 15px 10px;
+    font-size: 34px;
+    color: rgb(0, 100, 167);
+    font-family: 'Poppins', 'Montserrat', sans-serif;
+}
+
+
+/*------------------------------------------------------------*/
+.display-main-container{
+    width: 100%;
+    height: auto;
+}
+.inner-display-main-container{
+    width: 95%;
+    height: auto;
+    margin: 20px auto;
+}
+
+.card-container{
+    padding: 15px;
+    width: 95%;
+    margin: 0 auto;
+    background-color: #F0F8FF;
+    box-shadow: rgba(50, 50, 105, 0.15) 0px 2px 5px 0px, rgba(0, 114, 124, 0.05) 0px 1px 1px 0px;
+}
+
+.card-body-con{
+    width: 100%;
+}
+
+.div-buttons-container{
+    /* background-color: red; */
+}
+
+.likes-container{
+    width: fit-content;
+    display: flex;
+}
+.likes-container a{
+    margin: 0 5px;
+}
+
+.button-15 , .button-16{
+  background-image: linear-gradient(#42A1EC, #0070C9);
+  border: 1px solid #0077CC;
+  border-radius: 4px;
+  box-sizing: border-box;
+  color: #FFFFFF;
+  cursor: pointer;
+  direction: ltr;
+  font-family: "SF Pro Text","SF Pro Icons","AOS Icons","Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-size: 17px;
+  font-weight: 400;
+  letter-spacing: 1px;
+  line-height: 1.47059;
+  min-width: 30px;
+  overflow: visible;
+  padding: 4px 15px;
+  text-align: center;
+  vertical-align: baseline;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  white-space: nowrap;
+}
+.button-16{
+    background-image: linear-gradient(#FF033E, #BA0021);
+    border: 1px solid #BA0021;
+}
+.button-15 a, .button-16 a{
+    color: white;
+    text-decoration: none;
+}
+
+.button-15:hover {
+  background-image: linear-gradient(#51A9EE, #147BCD);
+  border-color: #1482D0;
+  text-decoration: none;
+}
+
+.button-16:hover a , .button-15:hover a{
+    color: rgb(241, 241, 241);
+}
+
+.button-16:hover {
+    background-image: linear-gradient(#ff033ec2, #ba0022cc);
+    border-color: #ba0022cc;
+    text-decoration: none;
+  }
+
+  .likes-container button{
+      border: none;
+      background-color: transparent;
+      margin: 0 8px;
+  }
+
+  .fa-thumbs-up ,.fa-share{
+    color: #147BCD;
+    font-size: 18.5px;
+  }
+
+  @media only screen and (max-width: 750px) {
+
+    .company-name h2{
+        padding: 10px 5px;
+        font-size: 24px;
+    }
+    .icon-container{
+        width: 60px;
+    }
+
+  }
