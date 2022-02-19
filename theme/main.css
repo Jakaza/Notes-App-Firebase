@@ -7,6 +7,8 @@
     margin: 0;
     box-sizing: border-box;
 }
+
+
 body{
     box-sizing: border-box;
 }
@@ -155,4 +157,8 @@ a{
         width: 60px;
     }
 
+  }
+
+  .card-container{
+      margin-bottom: 20px;
   }
