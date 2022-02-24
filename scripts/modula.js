@@ -79,18 +79,18 @@ export function displayNotes(noteDoc){
                     <a href="href="/form.html?id=${noteDoc.id}" class="card-link">Edit</a>
                 </button>
                 
-                <button data-id="${noteDoc.id}" class="button-16" style="width: fit-content; padding: 3px 10px;">
+                <button  id="${noteDoc.id}" class="button-16 delete" style="width: fit-content; padding: 3px 10px;">
                     Delate
                 </button>
                
             </div>
             <div class="likes-container">
-                <button>
-                    <i data-id="${noteDoc.id}" class="fa fa-thumbs-up" aria-hidden="true"></i>
-                    <br><span data-id="${noteDoc.id}" >${note.likes}</span>
+                <button class="like">
+                    <i id="${noteDoc.id}" class="fa fa-thumbs-up" aria-hidden="true"></i>
+                    <br><span id="${noteDoc.id}" >${note.likes}</span>
                 </button>
-                <button>
-                    <i data-id="${noteDoc.id}" class="fa fa-share"  aria-hidden="true"></i>
+                <button class="share">
+                    <i id="${noteDoc.id}" class="fa fa-share"  aria-hidden="true"></i>
                     <br> <span data-id="${noteDoc.id}">${note.shares}</span>
                 </button>
             </div>
@@ -99,4 +99,81 @@ export function displayNotes(noteDoc){
       </div>
         `
         noteElContainer.innerHTML = template;
+        var editButton = document.querySelectorAll('.edit');
+        var deleteButton = document.querySelectorAll('.delete');
+        var likeButton = document.querySelectorAll('.like');
+        var shareButton = document.querySelectorAll('.share');
+
+
+
+
+        deleteNote(deleteButton);
+        updateLikes(likeButton)
+        updateShares(shareButton)
+}
+
+function deleteNote(buttons){
+    buttons.forEach(button => {
+        button.addEventListener('click', function(el){
+                const buttonID  = el.target.id;
+
+            db.collection("notes").doc(buttonID).delete()
+            .then(() => {
+                console.log("Document successfully deleted!");
+            })
+            .catch((error) => {
+                console.error("Error removing document: ", error);
+            });
+        })
+        
+    });
+
+}
+
+let likes = 0;
+let shares = 0;
+
+function updateLikes(buttons){
+
+    buttons.forEach(button => {
+        button.addEventListener('click', function(el){
+
+        const buttonID = el.target.id;
+        console.log(buttonID);
+
+        db.collection('notes').doc(buttonID).get().then((data)=>{
+            likes = data.data().likes;
+        })
+        .then(()=> {
+
+            db.collection("notes").doc(buttonID).update({'likes' : 1 + likes})
+            .then(()=>{
+                console.log("successfully updated");
+            })
+        });
+     })
+    });
+}
+
+
+function updateShares(buttons){
+
+    buttons.forEach(button => {
+        button.addEventListener('click', function(el){
+
+        const buttonID = el.target.id;
+        console.log(buttonID);
+
+        db.collection('notes').doc(buttonID).get().then((data)=>{
+            shares = data.data().shares;
+        })
+        .then(()=> {
+
+            db.collection("notes").doc(buttonID).update({'shares' : 1 + shares})
+            .then(()=>{
+                console.log("successfully updated");
+            })
+        });
+     })
+    });
 }
