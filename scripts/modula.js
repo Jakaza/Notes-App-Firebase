@@ -1,13 +1,20 @@
 
-export function addNote(){
-    let titleEl = document.getElementById("title").value;
-    let bodyEl = document.getElementById("body").value;
+export function fetchOldData(searchID){
+    db.collection('notes').doc(searchID).get().then((data)=>{
+        const res = data.data();
+        titleEl.value = res.title;
+        bodyEl.value = res.body;
+    })
+    .catch((err)=>{
+        console.log('Data not found');
+    })
+}
 
+export function addNote(){
     if(titleEl && bodyEl){
-        if(titleEl.length < 25 ){
             db.collection("notes").add({
-                title : titleEl,
-                body : bodyEl,
+                title : titleEl.value,
+                body : bodyEl.value,
                 date : createDate(),
                 time : createTime(),
                 likes: 0,
@@ -21,14 +28,28 @@ export function addNote(){
                 console.error("Error adding document: ", error);
             });
         }
-        else{
-            console.log("lenght of the title must be less than 25");
-        }
     }
-    else{
 
-    }
+
+export function upDateNotes(searchID){
+    db.collection("notes").doc(searchID).update(
+        {
+            title : titleEl.value,
+            body : bodyEl.value,
+            date : createDate(),
+            time : createTime(),
+            likes: 0,
+            shares: 0
+        })
+    .then((docRef)=>{
+        console.log(docRef);
+        window.location.assign('/index.html')
+    })
+    .catch((error) => {
+        console.error("Error adding document: ", error);
+    });
 }
+
 
 const mL = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
@@ -70,13 +91,13 @@ export function displayNotes(noteDoc){
         <div class="card-container">
         <div class="card-body-con">
           <h5>${note.title}</h5>
-          <p class="card-text">${note.body.slice(0,300)}... <a style=" text-decoration: none;"  href="href="/form.html?id=${noteDoc.id}">Read More</a></p>
+          <p class="card-text">${slicePara(note ,noteDoc)} </p>
           <h6 class="card-subtitle mb-2 text-muted">Time : ${note.time}</h6>
           <h6 class="card-subtitle mb-2 text-muted">Date : ${note.date}</h6>
           <div class="div-buttons-container" style="display: flex; justify-content: space-between; width: 100%;">
             <div class="links">
                 <button class="button-15" style="width: fit-content; padding: 3px 10px;">
-                    <a href="href="/form.html?id=${noteDoc.id}" class="card-link">Edit</a>
+                    <a href="form.html?id=${noteDoc.id}" class="card-link">Edit</a>
                 </button>
                 
                 <button  id="${noteDoc.id}" class="button-16 delete" style="width: fit-content; padding: 3px 10px;">
@@ -104,9 +125,6 @@ export function displayNotes(noteDoc){
         var likeButton = document.querySelectorAll('.like');
         var shareButton = document.querySelectorAll('.share');
 
-
-
-
         deleteNote(deleteButton);
         updateLikes(likeButton)
         updateShares(shareButton)
@@ -129,6 +147,15 @@ function deleteNote(buttons){
     });
 
 }
+
+function slicePara(len, noteDoc){
+    if(len.body.length  > 200){
+        return len.body.slice(0, 200)+`... <a style=" text-decoration: none;" href="details.html?id=${noteDoc.id}">Read More</a>`
+    }else{
+        return len.body;
+    }
+}
+
 
 let likes = 0;
 let shares = 0;

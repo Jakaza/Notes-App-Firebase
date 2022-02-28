@@ -7,3 +7,6 @@ firebase.initializeApp({
     appId: "1:205523281078:web:1102587e0bc664ad94b217"
 });
 let db = firebase.firestore();
+
+let titleEl = document.getElementById("title");
+let bodyEl = document.getElementById("body");

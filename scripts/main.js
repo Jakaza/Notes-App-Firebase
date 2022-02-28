@@ -8,6 +8,15 @@ db.collection('notes').get().then((data)=>{
 })
 
 
+//Real Time Changes (Listener)
+
+// db.collection('notes').onSnapshot(snapshot=>{
+//     const changes = snapshot.docChanges();
+//     changes.forEach(note =>{
+//         displayNotes(note.doc);
+//     })
+// })
+
 
 //Delete note
 var deleteButton = document.querySelectorAll('.delete');

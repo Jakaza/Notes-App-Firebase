@@ -52,6 +52,10 @@ a{
     font-family: 'Poppins', 'Montserrat', sans-serif;
 }
 
+.card-body-con h5{
+    text-transform: capitalize;
+}
+
 
 /*------------------------------------------------------------*/
 .display-main-container{
@@ -163,6 +167,10 @@ a{
       margin-bottom: 20px;
   }
 
-fa-thumbs-up:hover{
-    color: red;
+.fa-thumbs-up:hover{
+    color: rgb(21, 212, 31);
+}
+
+.fa-thumbs-up:active{
+    font-size: 22px;
 }
