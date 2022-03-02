@@ -112,6 +112,6 @@ function updateLikes(buttonID){
 function slicePara(noteDoc){
     if(noteDoc.data().body.length  > 200)
         return noteDoc.data().body.slice(0, 200)+`... <a style=" text-decoration: none;" href="details.html?id=${noteDoc.id}">Read More</a>`
-    else
-        return noteDoc.body;
+
+    return noteDoc.data().body;     
 }
