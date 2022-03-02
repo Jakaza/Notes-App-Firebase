@@ -8,5 +8,3 @@ firebase.initializeApp({
 });
 let db = firebase.firestore();
 
-let titleEl = document.getElementById("title");
-let bodyEl = document.getElementById("body");
