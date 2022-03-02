@@ -24,7 +24,7 @@ function displayNotes(noteDoc){
         <div class="card-container" id="${note.id}">
         <div class="card-body-con">
           <h5>${note.data().title}</h5>
-          <p class="card-text">${slicePara(note.data(), note)}</p>
+          <p class="card-text">${slicePara(note)}</p>
           <h6 class="card-subtitle mb-2 text-muted">Time : ${note.data().time}</h6>
           <h6 class="card-subtitle mb-2 text-muted">Date : ${note.data().date}</h6>
           <div class="div-buttons-container" style="display: flex; justify-content: space-between; width: 100%;">
@@ -109,10 +109,9 @@ function updateLikes(buttonID){
         });
 }
 
-function slicePara(len, noteDoc){
-    if(len.body.length  > 200){
-        return len.body.slice(0, 200)+`... <a style=" text-decoration: none;" href="details.html?id=${noteDoc.id}">Read More</a>`
-    }else{
-        return len.body;
-    }
+function slicePara(noteDoc){
+    if(noteDoc.data().body.length  > 200)
+        return noteDoc.data().body.slice(0, 200)+`... <a style=" text-decoration: none;" href="details.html?id=${noteDoc.id}">Read More</a>`
+    }else
+        return noteDoc.body;
 }
